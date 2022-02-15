@@ -9,13 +9,10 @@ const getGreetings = (data) => ({
 });
 
 export const fetchGreetings = () => async (dispatch) => {
-  fetch(API_URL, { mode: 'no-cors' })
+  fetch(API_URL)
     .then(async (response) => response.json())
     .then((data) => {
       dispatch(getGreetings(data));
-    })
-    .catch((error) => {
-      console.error('There was an error!', error);
     });
 };
 

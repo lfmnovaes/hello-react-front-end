@@ -4,18 +4,19 @@ import { fetchGreetings } from '../redux/reducers/greetingReducer';
 
 const Greeting = () => {
   const dispatch = useDispatch();
-  const greetingStore = useSelector((store) => store.greetingReducer);
+  const randomGreeting = useSelector((store) => store.greetingReducer);
   useEffect(() => {
     dispatch(fetchGreetings());
   }, []);
-  const consoleThings = () => {
-    console.log(greetingStore);
+  const fetchAnotherGreeting = () => {
+    dispatch(fetchGreetings());
+    document.getElementById('greeting').innerText = randomGreeting.text;
   };
 
   return (
     <div>
-      <button type="button" className="getGreetingsBtn" onClick={() => consoleThings()}>Magic button</button>
-      <p id="greeting">asd</p>
+      <button type="button" className="getGreetingsBtn" onClick={() => fetchAnotherGreeting()}>Magic button</button>
+      <p id="greeting" />
     </div>
   );
 };
